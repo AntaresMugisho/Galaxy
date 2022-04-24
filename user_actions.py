@@ -11,11 +11,15 @@ def on_keyboard_down(self, keyboard, keycode, text, modifiers):
     elif keycode[1] == "right" or keycode[1] == "numpad6":
         self.current_speed_x = - self.SPEED_X
 
+    if keycode[1] == "up" or keycode[1] == "numpad8":
+        self.SPEED_Y += .1
+
     return True
 
 
 def on_keyboard_up(self, keyboard, keycode):
     self.current_speed_x = 0
+    self.SPEED_Y = .2
     return True
 
 
