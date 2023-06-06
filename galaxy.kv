@@ -1,3 +1,4 @@
+#:import hex kivy.utils.get_color_from_hex
 #:import menu menu
 
 MainWidget:
@@ -21,3 +22,38 @@ MainWidget:
         font_name: "fonts/Eurostile.ttf"
         size_hint: .18, .18
         pos_hint: {"x": 0, "top": 1}
+
+   #BoxLayout:
+   #    orientation: "vertical"
+
+   #    Button:
+   #        size_hint: None, None
+   #        on_press: print("Pressed Ellipse")
+   #        canvas:
+   #            Color:
+   #                rgba: hex("#00FF00")
+   #            Ellipse:
+   #                pos:
+   #                size: 40, 40
+
+   #    BoxLayout:
+   #        orientation: "horizontal"
+
+   #        canvas:
+   #            Color:
+   #                rgba: hex("#00FF00")
+   #            Ellipse:
+   #                size: 40, 40
+
+   #        canvas:
+   #            Color:
+   #                rgba: hex("#00FF00")
+   #            Ellipse:
+   #                size: 40, 40
+
+   #        canvas:
+   #            Color:
+   #                rgba: hex("#00FF00")
+   #            Ellipse:
+   #                pos: self.pos
+   #                size: 40, 40

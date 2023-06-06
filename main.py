@@ -5,8 +5,8 @@ from kivy.core.audio import SoundLoader
 from kivy.lang import Builder
 from kivy.uix.relativelayout import RelativeLayout
 
-Config.set('graphics', 'width', '716')
-Config.set('graphics', 'height', '368')
+Config.set('graphics', 'width', '900')
+Config.set('graphics', 'height', '400')
 
 from kivy import platform
 from kivy.core.window import Window
@@ -37,7 +37,7 @@ class MainWidget(RelativeLayout):
     H_LINES_SPACING = .2  # Percentage of the screen height
     horizontal_lines = []
 
-    SPEED_Y = 1
+    SPEED_Y = .8
     current_offset_y = 0
     current_y_loop = 0
 
@@ -104,7 +104,6 @@ class MainWidget(RelativeLayout):
         self.current_y_loop = 0
         self.current_speed_x = 0
         self.current_offset_x = 0
-        self.score_txt = f"SCORE: {self.current_y_loop}"
         self.tiles_coordinates = []
         self.pre_fill_tiles_coordinates()
         self.generate_tiles_coordinates()
@@ -306,7 +305,7 @@ class MainWidget(RelativeLayout):
 
         if not self.state_game_over and self.state_game_has_started:
 
-            speed_y = self.SPEED_Y * self.height / 100
+            speed_y = self.SPEED_Y * (self.height / 100) #+ self.current_y_loop * .001
             self.current_offset_y += speed_y * time_factor
 
             spacing_y = self.H_LINES_SPACING * self.height
@@ -314,7 +313,7 @@ class MainWidget(RelativeLayout):
             while self.current_offset_y >= spacing_y:
                 self.current_offset_y -= spacing_y
                 self.current_y_loop += 1
-                self.score_txt = f"SCORE: {self.current_y_loop}"
+                self.score_txt = f"SCORE: {int(self.current_y_loop * 1.5)}"
                 self.generate_tiles_coordinates()
 
             speed_x = self.current_speed_x * self.width / 100
@@ -344,6 +343,7 @@ class MainWidget(RelativeLayout):
             self.sound_begin.play()
 
         self.sound_music1.play()
+        self.sound_music1.loop = True
         self.reset_game()
         self.state_game_has_started = True
         self.menu_widget.opacity = 0
